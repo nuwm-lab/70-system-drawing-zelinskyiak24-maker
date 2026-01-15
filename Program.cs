@@ -7,13 +7,13 @@ namespace SystemDrawingGraph
 {
     public class Form1 : Form
     {
-        private const double XMin = -1;
-        private const double XMax = 2.3;
-        private const double Step = 0.7;
+        private const double XMin = 2.5;
+        private const double XMax = 9.0;
+        private const double Step = 0.8;
 
         public Form1()
         {
-            Text = "System.Drawing Graph";
+            Text = "Graph - System.Drawing";
             Width = 800;
             Height = 600;
             Paint += Form1_Paint;
@@ -27,17 +27,19 @@ namespace SystemDrawingGraph
 
         private double CalculateY(double x)
         {
-            return (Math.Exp(2 * x) - 8) / (x + 3);
+            return (1.5 * x - Math.Log(2 * x)) / (3 * x + 1);
         }
 
         private void DrawGraph(Graphics g)
         {
             g.Clear(Color.White);
+
             int width = ClientSize.Width;
             int height = ClientSize.Height;
 
             List<PointF> points = new();
-            double yMin = double.MaxValue, yMax = double.MinValue;
+            double yMin = double.MaxValue;
+            double yMax = double.MinValue;
 
             for (double x = XMin; x <= XMax; x += Step)
             {
